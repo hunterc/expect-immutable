@@ -46,19 +46,19 @@ describe('expect immutable', () => {
     it('does not throw when Maps are the same', () => {
       expect(Immutable.Map({ a: 1 })).toEqualImmutable(Immutable.Map({ a: 1 }));
     });
- 
+
     it('throws when Lists are different', () => {
       expect(() =>
         expect(Immutable.List([])).toEqualImmutable(Immutable.List([1]))
       ).toThrow(
         'Expected [] to equal [ 1 ]'
-      )
+      );
     });
 
     it('does not throw when empty Lists are compared', () => {
       expect(Immutable.List([])).toEqualImmutable(Immutable.List([]));
     });
- 
+
     it('does not throw when Lists are the same', () => {
       expect(Immutable.List([1])).toEqualImmutable(Immutable.List([1]));
     });
@@ -96,13 +96,13 @@ describe('expect immutable', () => {
     it('does not throw when Lists are different', () => {
       expect(Immutable.List([1])).toNotEqualImmutable(Immutable.List([]));
     });
- 
+
     it('throws when Lists are the same', () => {
       expect(() =>
         expect(Immutable.List([1])).toNotEqualImmutable(Immutable.List([1]))
       ).toThrow(
         'Expected [ 1 ] to not equal [ 1 ]'
-      )
+      );
     });
   });
 });
