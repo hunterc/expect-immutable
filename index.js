@@ -4,7 +4,7 @@ import { Iterable } from 'immutable';
 function ensureIterable(object) {
   expect.assert(
     Iterable.isIterable(object),
-    'expected %s to be an Immutable Iterable',
+    'Expected %s to be an Immutable Iterable',
     object
   );
 }
