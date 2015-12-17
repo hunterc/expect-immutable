@@ -1,0 +1,17 @@
+{
+  "name": "expect-immutable",
+  "version": "0.0.1",
+  "description": "immutable js extension for expect.js",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Hunter Cassidy <hwcassidy@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "expect",
+    "expect-extension"
+  ],
+  "peerDependencies": {
+    "expect": "^1.0.0",
+    "immutable": "^3.7.5"
+  }
+}
