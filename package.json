@@ -4,8 +4,9 @@
   "description": "immutable js extension for expect.js",
   "main": "index-dist.js",
   "scripts": {
-	"build": "babel index.js -o index-dist.js",
-	"build:watch": "babel index.js -o index-dist.js -w"
+    "build": "babel index.js -o index-dist.js",
+    "build:watch": "babel index.js -o index-dist.js -w",
+    "lint": "eslint index.js index-test.js"
   },
   "author": "Hunter Cassidy <hwcassidy@gmail.com>",
   "license": "MIT",
@@ -19,6 +20,10 @@
   },
   "devDependencies": {
     "babel-core": "^6.3.17",
-    "babel-preset-es2015": "^6.3.13"
+    "babel-eslint": "^4.1.6",
+    "babel-preset-es2015": "^6.3.13",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^2.1.1",
+    "eslint-plugin-react": "^3.11.3"
   }
 }
