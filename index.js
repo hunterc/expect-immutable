@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { Iterable: { isIterable } } from 'immutable';
+import { Iterable } from 'immutable';
 
 const api = {
   toEqualImmutable(iterable) {
@@ -19,7 +19,7 @@ const api = {
 
 function ensureIterable(object) {
   expect.assert(
-    isIterable(object),
+    Iterable.isIterable(object),
     'expected %s to be an Immutable Iterable',
     object
   );
