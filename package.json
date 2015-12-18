@@ -30,5 +30,17 @@
     "eslint-plugin-react": "^3.11.3",
     "expect": "^1.13.4",
     "immutable": "^3.7.6"
-  }
+  },
+  "dependencies": {
+    "expect": "^1.13.4",
+    "immutable": "^3.7.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hunterc/expect-immutable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hunterc/expect-immutable/issues"
+  },
+  "homepage": "https://github.com/hunterc/expect-immutable#readme"
 }
