@@ -4,7 +4,7 @@ immutable.js extension for [mjackson/expect](https://github.com/mjackson/expect)
 
 ## setup
 
-`npm install expect-jsx`
+`npm install expect-immutable`
 
 ## api
 
