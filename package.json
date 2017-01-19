@@ -1,6 +1,6 @@
 {
   "name": "expect-immutable",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "immutable js extension for expect.js",
   "main": "index-dist.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "immutable": "^3.7.5"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.3.17",
     "babel-eslint": "^4.1.6",
     "babel-preset-es2015": "^6.3.13",
@@ -29,7 +30,8 @@
     "eslint-config-airbnb": "^2.1.1",
     "eslint-plugin-react": "^3.11.3",
     "expect": "^1.13.4",
-    "immutable": "^3.7.6"
+    "immutable": "^3.7.6",
+    "mocha": "^3.2.0"
   },
   "dependencies": {
     "expect": "^1.13.4",
