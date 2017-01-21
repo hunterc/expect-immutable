@@ -2,14 +2,12 @@
 
 immutable.js extension for [mjackson/expect](https://github.com/mjackson/expect)
 
-## setup
-
-`npm install expect-immutable`
-
 ## api
 
 * expect(ImmutableIterable).toEqualImmutable(ImmutableIterable)
 * expect(ImmutableIterable).toNotEqualImmutable(ImmutableIterable)
+* expect(ImmutableIterable).toBeSupersetImmutable(ImmutableIterable)
+* expect(ImmutableIterable).toBeSubsetImmutable(ImmutableIterable)
 
 ## usage
 
@@ -22,21 +20,21 @@ expect.extend(expectImmutable);
 
 describe('expect-immutable', () => {
   it('will work', () => {
-    expect(Map({ a: 1 })).toEqualImmutable(Map({ a: 1 }));
-    expect(Map({ a: 1 })).toNotEqualImmutable(Map({ a: 2 }));
-
-	expect(List([1])).toEqualImmutable(List([1]));
-	expect(List([1])).toNotEqualImmutable(List([1, 2]));
+    expect(Map().set(1, 2)).toEqualImmutable(Map().set(1, 2));
+    expect(Map().set(1, 2)).toNotEqualImmutable(Map().set("1", 2));
+    expect(Map({1: 2, 3: 4})).toBeSupersetImmutable(Map({1: 2}));
+    expect(Map({1: 2})).toBeSubsetImmutable(Map({1: 2, 3: 4}));
   });
 });
 ```
 
-## todo
+## TODO
 
-Currently, only `Map` and `List` are supported by test cases, but any Immutable Iterable should work.
+Prettify the error messages to make them similar to **expect** library.
 
 ## thanks
 
-Thanks to [mjackson](https://github.com/mjackson) for writing the awesome [expect library](https://github.com/mjackson/expect).
 
-Thanks to [algolia/expect-jsx](https://github.com/algolia/expect-jsx) who I based heavily off of.
+Thanks to [mjackson](https://github.com/mjackson) for [expect library](https://github.com/mjackson/expect).
+
+Thanks to [hunterc](https://github.com/hunterc), this library is a fork of his [expect-immutable](https://github.com/hunterc/expect-immutable).
