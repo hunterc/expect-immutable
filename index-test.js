@@ -35,7 +35,7 @@ describe('expect immutable', () => {
       expect(() =>
         expect(Immutable.Map({})).toEqualImmutable(Immutable.Map({ a: 1 }))
       ).toThrow(
-        'Expected {} to equal { a: 1 }'
+        'Expected Map {} to equal Map { "a": 1 }'
       );
     });
 
@@ -51,7 +51,7 @@ describe('expect immutable', () => {
       expect(() =>
         expect(Immutable.List([])).toEqualImmutable(Immutable.List([1]))
       ).toThrow(
-        'Expected [] to equal [ 1 ]'
+          'Expected List [] to equal List [ 1 ]'
       );
     });
 
@@ -61,6 +61,22 @@ describe('expect immutable', () => {
 
     it('does not throw when Lists are the same', () => {
       expect(Immutable.List([1])).toEqualImmutable(Immutable.List([1]));
+    });
+
+    it('throws when object types are different', () => {
+      expect(() =>
+        expect(Immutable.List()).toEqualImmutable(Immutable.Seq())
+      ).toThrow(
+        'Expected List [] and Seq [] to be of the same type'
+      );
+    });
+
+    it('throws when Map keys are of different type', () => {
+      expect(() =>
+        expect(Immutable.Map().set(1, 2)).toEqualImmutable(Immutable.Map().set('1', 2))
+      ).toThrow(
+        'Expected Map { 1: 2 } to equal Map { "1": 2 }'
+      );
     });
   });
 
@@ -89,7 +105,7 @@ describe('expect immutable', () => {
       expect(() =>
         expect(Immutable.Map({ a: 1 })).toNotEqualImmutable(Immutable.Map({ a: 1 }))
       ).toThrow(
-        'Expected { a: 1 } to not equal { a: 1 }'
+        'Expected Map { "a": 1 } not to equal Map { "a": 1 }'
       );
     });
 
@@ -101,8 +117,64 @@ describe('expect immutable', () => {
       expect(() =>
         expect(Immutable.List([1])).toNotEqualImmutable(Immutable.List([1]))
       ).toThrow(
-        'Expected [ 1 ] to not equal [ 1 ]'
+        'Expected List [ 1 ] not to equal List [ 1 ]'
       );
+    });
+  });
+
+  context('toBeSupersetImmutable', () => {
+    it('throws when each List has unique values', () => {
+      expect(() => {
+        const pseudoSuperset = Immutable.List([1, Immutable.List([2, 3])]);
+        const pseudoSubset = Immutable.List([1, Immutable.List([2, 4])]);
+        expect(pseudoSuperset).toBeSupersetImmutable(pseudoSubset);
+      }).toThrow(
+        'Expected List [ 1, List [ 2, 3 ] ] to contain List [ 1, List [ 2, 4 ] ]'
+      );
+    });
+
+    it('throws when types are different', () => {
+      expect(() =>
+        expect(Immutable.List([1, 2])).toBeSupersetImmutable(Immutable.Seq([1]))
+      ).toThrow(
+        'Expected List [ 1, 2 ] and Seq [ 1 ] to be of the same type'
+      );
+    });
+
+    it('does not throw when first List is superset of the other', () => {
+      expect(Immutable.List([1, 2])).toBeSupersetImmutable(Immutable.List([1]));
+    });
+
+    it('does not throw when Lists are equal', () => {
+      expect(Immutable.List([1])).toBeSupersetImmutable(Immutable.List([1]));
+    });
+  });
+
+  context('toBeSubsetImmutable', () => {
+    it('throws when each List has unique values', () => {
+      expect(() => {
+        const pseudoSuperset = Immutable.List([1, Immutable.List([2, 3])]);
+        const pseudoSubset = Immutable.List([1, Immutable.List([2, 4])]);
+        expect(pseudoSuperset).toBeSubsetImmutable(pseudoSubset);
+      }).toThrow(
+        'Expected List [ 1, List [ 2, 3 ] ] to be contained by List [ 1, List [ 2, 4 ] ]'
+      );
+    });
+
+    it('throws when types are different', () => {
+      expect(() =>
+        expect(Immutable.List([1, 2])).toBeSubsetImmutable(Immutable.Seq([1]))
+      ).toThrow(
+        'Expected List [ 1, 2 ] and Seq [ 1 ] to be of the same type'
+      );
+    });
+
+    it('does not throw when first List is superset of the other', () => {
+      expect(Immutable.List([1])).toBeSubsetImmutable(Immutable.List([1, 2]));
+    });
+
+    it('does not throw when Lists are equal', () => {
+      expect(Immutable.List([1])).toBeSubsetImmutable(Immutable.List([1]));
     });
   });
 });
